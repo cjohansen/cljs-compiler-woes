@@ -1,0 +1,31 @@
+{:paths ["src" "target"]
+ :deps {org.clojure/clojure {:mvn/version "1.9.0"}
+        org.clojure/clojurescript {:mvn/version "1.10.339"}
+        cljsjs/moment {:mvn/version "2.17.1-1"}
+        medley {:mvn/version "1.0.0"}}
+ :aliases {:dev {:extra-deps {com.bhauman/figwheel-main {:mvn/version "0.2.0-SNAPSHOT"}}}
+           :browser-repl {:main-opts ["-m" "figwheel.main"
+                                      "-co" "{:main\"cljs-compiler-woes.browser\"}"
+                                      "--repl"]}
+           :node-repl {:main-opts ["-m" "figwheel.main"
+                                   "-co" "{:main\"cljs-compiler-woes.core\"}"
+                                   "-t" "node"
+                                   "--repl"]}
+           :browser-build {:main-opts ["-m" "cljs.main"
+                                       "-d" "target"
+                                       "-o" "target/browser.js"
+                                       "-t" "browser"
+                                       "-O" "simple"
+                                       "--compile" "cljs-compiler-woes.browser"]}
+           :node-build-dev {:main-opts ["-m" "cljs.main"
+                                        "-d" "target"
+                                        "-o" "target/node.js"
+                                        "-t" "node"
+                                        "-O" "none"
+                                        "--compile" "cljs-compiler-woes.core"]}
+           :node-build-prod {:main-opts ["-m" "cljs.main"
+                                         "-d" "target"
+                                         "-o" "target/node.js"
+                                         "-t" "node"
+                                         "-O" "simple"
+                                         "--compile" "cljs-compiler-woes.core"]}}}
